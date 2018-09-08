@@ -2,7 +2,6 @@ package View;
 
 import java.awt.Toolkit;
 import javax.swing.JOptionPane;
-import AppPackage.AnimationClass;
 import javax.swing.table.DefaultTableModel;
 import Model.JugadorModel;
 import Controller.JugadorController;
