@@ -1,51 +1,39 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package model;
 
-/**
- *
- * @author E304
- */
-public class ingreso {
-    private persona persona;
-    private piso piso;
-    private int momento;
+public class Ingreso {
+    
+    private Persona _Persona;
+    private Piso _Piso;
+    private int Momento;
 
-    public ingreso(persona persona, piso piso, int momento) {
-        this.persona = persona;
-        this.piso = piso;
-        this.momento = momento;
+    public Ingreso(Persona _Persona, Piso _Piso, int Momento) {
+        this._Persona = _Persona;
+        this._Piso = _Piso;
+        this.Momento = Momento;
     }
 
-    public ingreso() {
+    public Persona getPersona() {
+        return _Persona;
     }
 
-    public persona getPersona() {
-        return persona;
+    public void setPersona(Persona _Persona) {
+        this._Persona = _Persona;
     }
 
-    public void setPersona(persona persona) {
-        this.persona = persona;
+    public Piso getPiso() {
+        return _Piso;
     }
 
-    public piso getPiso() {
-        return piso;
-    }
-
-    public void setPiso(piso piso) {
-        this.piso = piso;
+    public void setPiso(Piso _Piso) {
+        this._Piso = _Piso;
     }
 
     public int getMomento() {
-        return momento;
+        return Momento;
     }
 
-    public void setMomento(int momento) {
-        this.momento = momento;
+    public void setMomento(int Momento) {
+        this.Momento = Momento;
     }
-    
     
 }
