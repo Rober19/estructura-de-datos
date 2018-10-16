@@ -1,3 +1,4 @@
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -5,12 +6,19 @@
  */
 package view;
 
+import controller.mercanciaController;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Queue;
 import java.util.Date;
 import java.util.LinkedList;
 import java.util.Stack;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import model.mercancia;
 
@@ -23,72 +31,132 @@ public class view1 extends javax.swing.JFrame {
     /**
      * Creates new form view1
      */
-    Stack<mercancia> merca_list = new Stack();
-    Queue<mercancia> inspec_list = new LinkedList();
-    SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
-
-    Date date = new Date();
+    mercanciaController mcon = new mercanciaController();
 
     public view1() {
         initComponents();
         setLocationRelativeTo(null);
         setResizable(false);
-        quemados();
-        listar((DefaultTableModel) tbl_1.getModel(), getAll(merca_list));
+        cargar_datos();
+        listar();
+
     }
 
+    public void cargar_datos() {
+        File fichero = new File("PersistenciaPila.dat");
+
+        if (fichero.exists()) {
+            try {
+                FileInputStream archivo = new FileInputStream("PersistenciaPila.dat");
+                ObjectInputStream obj_archivo = new ObjectInputStream(archivo);
+                mcon.setMerca_list((Stack<mercancia>) obj_archivo.readObject());
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(null, "Ha ocurrido un error con el archivo");
+                quemados();
+            }
+        }
+
+    }
+
+    //en caso de error
     public void quemados() {
 
-        merca_list.add(new mercancia(
+        mcon.getMerca_list().add(new mercancia(
                 "Ford Mustang",
-                900,
+                920,
                 1,
                 2.5,
-                "Rojo",             
-                "",
-                "",
-                ""
-        ));
-        merca_list.add(new mercancia(
-                "Lamborigini Aventador",
-                900,
-                1,
-                2.5,               
-                "Verde",
-                "",
-                "",
-                ""
-        ));
-        merca_list.add(new mercancia(
-                "Chevrolet Camaro",
-                900,
-                1,
-                2.5,                
                 "Rojo",
                 "",
                 "",
                 ""
         ));
+        mcon.getMerca_list().add(new mercancia(
+                "Lamborigini Aventador",
+                900,
+                1.05,
+                2.5,
+                "Verde",
+                "",
+                "",
+                ""
+        ));
+        mcon.getMerca_list().add(new mercancia(
+                "Chevrolet Camaro",
+                1100,
+                1.1,
+                2.5,
+                "Rojo",
+                "",
+                "",
+                ""
+        ));
+        mcon.getMerca_list().add(new mercancia(
+                "Koenigsegg Agera",
+                950,
+                0.9,
+                2.5,
+                "Azul",
+                "",
+                "",
+                ""
+        ));
+        mcon.getMerca_list().add(new mercancia(
+                "Aston Martin Vulcan",
+                850,
+                0.7,
+                2.5,
+                "Silver",
+                "",
+                "",
+                ""
+        ));
     }
 
-    public Stack<String[]> getAll(Stack<mercancia> s) {
-        Stack<String[]> a = new Stack();
-        s.forEach(it -> {
-            a.add(new String[]{it.getCodigo(), it.getNombre(), it.getPeso() + "", it.getAltura() + "", it.getColor()});
-        });
-        return a;
+    public void listar() {
+        mcon.listar((DefaultTableModel) tbl_1.getModel(), mcon.convertAlmacenados());
+        mcon.listar((DefaultTableModel) tbl_2.getModel(), mcon.convertImportados());
     }
 
-    public void listar(DefaultTableModel t, Stack<String[]> arr) {
-        t.setNumRows(0);
-        arr.forEach(t::addRow);
+    public void validPanel() {
+        if (mcon.getInspec_list().size() > 0) {
+            lb_codigo_1.setText(mcon.getInspec_list().element().getCodigo());
+            lb_nombre_1.setText(mcon.getInspec_list().element().getNombre());
+            lb_fechaSalidConta_1.setText(mcon.getInspec_list().element().getFechaSalidaContainer() + "");
+            lb_peso_1.setText(mcon.getInspec_list().element().getPeso() + "");
+        } else {
+            lb_codigo_1.setText("codigo");
+            lb_nombre_1.setText("nombre");
+            lb_fechaSalidConta_1.setText("FechaSalidaContainer");
+            lb_peso_1.setText("peso");
+        }
+
+        if (mcon.getRevis_list().size() > 0) {
+            lb_codigo_2.setText(mcon.getRevis_list().element().getCodigo());
+            lb_nombre_2.setText(mcon.getRevis_list().element().getNombre());
+            lb_fechaInspeccionFisica_2.setText(mcon.getRevis_list().element().getFechaInspeccionFisica() + "");
+            lb_peso_2.setText(mcon.getRevis_list().element().getPeso() + "");
+        } else {
+            lb_codigo_2.setText("codigo");
+            lb_nombre_2.setText("nombre");
+            lb_fechaInspeccionFisica_2.setText("FechaInspeccionFisica");
+            lb_peso_2.setText("peso");
+        }
+
+        if (mcon.getImport_list().size() > 0) {
+            lb_codigo_3.setText(mcon.getImport_list().element().getCodigo());
+            lb_nombre_3.setText(mcon.getImport_list().element().getNombre());
+            lb_fechaSalidConta_3.setText(mcon.getImport_list().element().getFechaRevisionLicenciaImportacion() + "");
+            lb_peso_3.setText(mcon.getImport_list().element().getPeso() + "");
+        } else {
+            lb_codigo_3.setText("codigo");
+            lb_nombre_3.setText("nombre");
+            lb_fechaSalidConta_3.setText("FRevLicenciaImp");
+            lb_peso_3.setText("peso");
+        }
+
     }
 
-    /**
-     * This method is called from within the constructor to initialize the form.
-     * WARNING: Do NOT modify this code. The content of this method is always
-     * regenerated by the Form Editor.
-     */
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -100,7 +168,7 @@ public class view1 extends javax.swing.JFrame {
         btn_revision = new javax.swing.JButton();
         btn_import = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jTable2 = new javax.swing.JTable();
+        tbl_2 = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
         panel1 = new javax.swing.JPanel();
         lb_codigo_1 = new javax.swing.JLabel();
@@ -110,7 +178,7 @@ public class view1 extends javax.swing.JFrame {
         panel2 = new javax.swing.JPanel();
         lb_codigo_2 = new javax.swing.JLabel();
         lb_nombre_2 = new javax.swing.JLabel();
-        lb_fechaSalidConta_2 = new javax.swing.JLabel();
+        lb_fechaInspeccionFisica_2 = new javax.swing.JLabel();
         lb_peso_2 = new javax.swing.JLabel();
         panel3 = new javax.swing.JPanel();
         lb_codigo_3 = new javax.swing.JLabel();
@@ -136,11 +204,6 @@ public class view1 extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
-        tbl_1.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                tbl_1MouseClicked(evt);
-            }
-        });
         jScrollPane1.setViewportView(tbl_1);
         if (tbl_1.getColumnModel().getColumnCount() > 0) {
             tbl_1.getColumnModel().getColumn(0).setResizable(false);
@@ -157,35 +220,51 @@ public class view1 extends javax.swing.JFrame {
             }
         });
 
-        btn_inspec.setText("Inpecciòn Fisica");
+        btn_inspec.setText("Inspecciòn Fisica");
+        btn_inspec.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_inspecActionPerformed(evt);
+            }
+        });
 
         btn_revision.setText("Revisiòn Licencia");
+        btn_revision.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_revisionActionPerformed(evt);
+            }
+        });
 
         btn_import.setText("Importaciòn");
+        btn_import.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_importActionPerformed(evt);
+            }
+        });
 
-        jTable2.setModel(new javax.swing.table.DefaultTableModel(
+        tbl_2.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "Codigo", "Nombre", "Peso", "Altura", "Color"
+                "Codigo", "Nombre", "FSalidaCont", "FInstpeccFisica", "FRevisionLic", "Fimportacion"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false
+                false, false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane2.setViewportView(jTable2);
-        if (jTable2.getColumnModel().getColumnCount() > 0) {
-            jTable2.getColumnModel().getColumn(0).setResizable(false);
-            jTable2.getColumnModel().getColumn(1).setResizable(false);
-            jTable2.getColumnModel().getColumn(2).setResizable(false);
-            jTable2.getColumnModel().getColumn(3).setResizable(false);
-            jTable2.getColumnModel().getColumn(4).setResizable(false);
+        jScrollPane2.setViewportView(tbl_2);
+        if (tbl_2.getColumnModel().getColumnCount() > 0) {
+            tbl_2.getColumnModel().getColumn(0).setResizable(false);
+            tbl_2.getColumnModel().getColumn(1).setResizable(false);
+            tbl_2.getColumnModel().getColumn(2).setResizable(false);
+            tbl_2.getColumnModel().getColumn(3).setResizable(false);
+            tbl_2.getColumnModel().getColumn(4).setResizable(false);
+            tbl_2.getColumnModel().getColumn(5).setResizable(false);
         }
 
         jLabel1.setText("Mercancias Nacionalizadas");
@@ -196,6 +275,7 @@ public class view1 extends javax.swing.JFrame {
 
         lb_nombre_1.setText("nombre");
 
+        lb_fechaSalidConta_1.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         lb_fechaSalidConta_1.setText("FechaSalidaContainer");
 
         lb_peso_1.setText("peso");
@@ -237,7 +317,8 @@ public class view1 extends javax.swing.JFrame {
 
         lb_nombre_2.setText("nombre");
 
-        lb_fechaSalidConta_2.setText("FechaSalidaContainer");
+        lb_fechaInspeccionFisica_2.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        lb_fechaInspeccionFisica_2.setText("FechaInspeccionFisica");
 
         lb_peso_2.setText("peso");
 
@@ -254,7 +335,7 @@ public class view1 extends javax.swing.JFrame {
                     .addGroup(panel2Layout.createSequentialGroup()
                         .addGroup(panel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(lb_nombre_2)
-                            .addComponent(lb_fechaSalidConta_2))
+                            .addComponent(lb_fechaInspeccionFisica_2))
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
@@ -268,7 +349,7 @@ public class view1 extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(lb_nombre_2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(lb_fechaSalidConta_2)
+                .addComponent(lb_fechaInspeccionFisica_2)
                 .addContainerGap())
         );
 
@@ -278,7 +359,8 @@ public class view1 extends javax.swing.JFrame {
 
         lb_nombre_3.setText("nombre");
 
-        lb_fechaSalidConta_3.setText("FechaSalidaContainer");
+        lb_fechaSalidConta_3.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        lb_fechaSalidConta_3.setText("FRevLicenciaImp");
 
         lb_peso_3.setText("peso");
 
@@ -296,7 +378,7 @@ public class view1 extends javax.swing.JFrame {
                         .addGroup(panel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(lb_nombre_3)
                             .addComponent(lb_fechaSalidConta_3))
-                        .addGap(0, 129, Short.MAX_VALUE)))
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         panel3Layout.setVerticalGroup(
@@ -320,18 +402,22 @@ public class view1 extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addGap(0, 8, Short.MAX_VALUE)
+                                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 724, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addContainerGap()
+                                .addComponent(jScrollPane1))
+                            .addGroup(layout.createSequentialGroup()
+                                .addContainerGap()
+                                .addComponent(jLabel1)
+                                .addGap(0, 0, Short.MAX_VALUE)))
+                        .addGap(18, 18, 18))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(168, 168, 168)
-                        .addComponent(btn_sacar, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jLabel1)))
-                .addGap(37, 37, 37)
+                        .addGap(228, 228, 228)
+                        .addComponent(btn_sacar, javax.swing.GroupLayout.PREFERRED_SIZE, 207, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addComponent(panel2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
@@ -340,8 +426,8 @@ public class view1 extends javax.swing.JFrame {
                     .addComponent(btn_import, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btn_revision, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(panel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btn_inspec, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(28, Short.MAX_VALUE))
+                    .addComponent(btn_inspec, javax.swing.GroupLayout.PREFERRED_SIZE, 266, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(21, 21, 21))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -350,11 +436,11 @@ public class view1 extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btn_sacar, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 49, Short.MAX_VALUE)
-                        .addComponent(jLabel1)
                         .addGap(18, 18, 18)
+                        .addComponent(btn_sacar, javax.swing.GroupLayout.DEFAULT_SIZE, 75, Short.MAX_VALUE)
+                        .addGap(7, 7, 7)
+                        .addComponent(jLabel1)
+                        .addGap(7, 7, 7)
                         .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 195, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(btn_inspec)
@@ -375,26 +461,58 @@ public class view1 extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void tbl_1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbl_1MouseClicked
-
-    }//GEN-LAST:event_tbl_1MouseClicked
-
     private void btn_sacarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_sacarActionPerformed
-        if (merca_list.size() > 0) {
-            inspec_list.offer(merca_list.pop());
-        }
-        if (inspec_list.size() > 0) {
-            lb_codigo_1.setText(inspec_list.element().getCodigo());
-            lb_nombre_1.setText(inspec_list.element().getNombre());
-            lb_fechaSalidConta_1.setText(inspec_list.element().getFechaSalidaContainer()+"");
-            System.out.println(inspec_list.element().getFechaSalidaContainer()+"");
-            lb_peso_1.setText(inspec_list.element().getPeso()+"");
+
+        if (mcon.getMerca_list().size() > 0) {
+            mercancia pop = mcon.getMerca_list().pop();
+            pop.setEstado("EnProceso");
+            mcon.getInspec_list().offer(pop);
         }
 
-        inspec_list.forEach(i -> {
-            System.out.println(i.getNombre());
-        });
+        validPanel();
+
+        listar();
     }//GEN-LAST:event_btn_sacarActionPerformed
+
+    private void btn_inspecActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_inspecActionPerformed
+
+        if (mcon.getInspec_list().size() > 0) {
+            mercancia pop = mcon.getInspec_list().poll();
+            pop.setFechaInspeccionFisica(mcon.getTime());
+            pop.setEstado("RevisadaFisicamente");
+            mcon.getRevis_list().offer(pop);
+        }
+
+        validPanel();
+
+        listar();
+    }//GEN-LAST:event_btn_inspecActionPerformed
+
+    private void btn_importActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_importActionPerformed
+        if (mcon.getImport_list().size() > 0) {
+            mercancia pop = mcon.getImport_list().poll();
+            pop.setFechaImportacion(mcon.getTime());
+            pop.setEstado("LicenciaRevisada");
+            mcon.getNacionalized().add(pop);
+        }
+
+        validPanel();
+
+        listar();
+    }//GEN-LAST:event_btn_importActionPerformed
+
+    private void btn_revisionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_revisionActionPerformed
+        if (mcon.getRevis_list().size() > 0) {
+            mercancia pop = mcon.getRevis_list().poll();
+            pop.setFechaRevisionLicenciaImportacion(mcon.getTime());
+            pop.setEstado("Importada");
+            mcon.getImport_list().offer(pop);
+        }
+
+        validPanel();
+
+        listar();
+    }//GEN-LAST:event_btn_revisionActionPerformed
 
     /**
      * @param args the command line arguments
@@ -439,12 +557,11 @@ public class view1 extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTable jTable2;
     private javax.swing.JLabel lb_codigo_1;
     private javax.swing.JLabel lb_codigo_2;
     private javax.swing.JLabel lb_codigo_3;
+    private javax.swing.JLabel lb_fechaInspeccionFisica_2;
     private javax.swing.JLabel lb_fechaSalidConta_1;
-    private javax.swing.JLabel lb_fechaSalidConta_2;
     private javax.swing.JLabel lb_fechaSalidConta_3;
     private javax.swing.JLabel lb_nombre_1;
     private javax.swing.JLabel lb_nombre_2;
@@ -456,5 +573,6 @@ public class view1 extends javax.swing.JFrame {
     private javax.swing.JPanel panel2;
     private javax.swing.JPanel panel3;
     private javax.swing.JTable tbl_1;
+    private javax.swing.JTable tbl_2;
     // End of variables declaration//GEN-END:variables
 }

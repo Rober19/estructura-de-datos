@@ -5,6 +5,7 @@
  */
 package model;
 
+import java.io.Serializable;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.UUID;
@@ -13,12 +14,12 @@ import java.util.UUID;
  *
  * @author E304
  */
-public class mercancia {
-    
-     SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
+public class mercancia implements Serializable {
+
+    SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
     Date date = new Date();
 
-    private String codigo = UUID.randomUUID()+"";
+    private String codigo = UUID.randomUUID() + "";
     private String nombre;
     private double peso;
     private double altura;
@@ -31,7 +32,7 @@ public class mercancia {
     private String fechaImportacion;
 
     public mercancia(String nombre, double peso, double altura, double ancho, String color, String fechaInspeccionFisica, String fechaRevisionLicenciaImportacion, String fechaImportacion) {
-               this.nombre = nombre;
+        this.nombre = nombre;
         this.peso = peso;
         this.altura = altura;
         this.ancho = ancho;
