@@ -5,32 +5,37 @@
  */
 package model;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.UUID;
+
 /**
  *
  * @author E304
  */
 public class mercancia {
+    
+     SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
+    Date date = new Date();
 
-    private String codigo;
+    private String codigo = UUID.randomUUID()+"";
     private String nombre;
     private double peso;
     private double altura;
     private double ancho;
     private String color;
     private String estado = "Almacenada";
-    private String fechaSalidaContainer;
+    private String fechaSalidaContainer = formatter.format(date);
     private String fechaInspeccionFisica;
     private String fechaRevisionLicenciaImportacion;
     private String fechaImportacion;
 
-    public mercancia(String codigo, String nombre, double peso, double altura, double ancho, String color, String fechaSalidaContainer, String fechaInspeccionFisica, String fechaRevisionLicenciaImportacion, String fechaImportacion) {
-        this.codigo = codigo;
-        this.nombre = nombre;
+    public mercancia(String nombre, double peso, double altura, double ancho, String color, String fechaInspeccionFisica, String fechaRevisionLicenciaImportacion, String fechaImportacion) {
+               this.nombre = nombre;
         this.peso = peso;
         this.altura = altura;
         this.ancho = ancho;
-        this.color = color;       
-        this.fechaSalidaContainer = fechaSalidaContainer;
+        this.color = color;
         this.fechaInspeccionFisica = fechaInspeccionFisica;
         this.fechaRevisionLicenciaImportacion = fechaRevisionLicenciaImportacion;
         this.fechaImportacion = fechaImportacion;
