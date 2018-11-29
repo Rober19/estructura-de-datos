@@ -146,7 +146,6 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         jFileChooser2 = new javax.swing.JFileChooser();
         jPanel1 = new javax.swing.JPanel();
         jmapa = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
@@ -161,9 +160,6 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         jButton12 = new javax.swing.JButton();
         jButton13 = new javax.swing.JButton();
         jButton14 = new javax.swing.JButton();
-        jLabel1 = new javax.swing.JLabel();
-        jPanel3 = new javax.swing.JPanel();
-        jtacumulado = new javax.swing.JTextField();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jSeparator1 = new javax.swing.JPopupMenu.Separator();
@@ -231,20 +227,10 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         });
         jPanel1.setLayout(null);
         jPanel1.add(jmapa);
-        jmapa.setBounds(10, 10, 750, 500);
+        jmapa.setBounds(10, 10, 530, 530);
 
         getContentPane().add(jPanel1);
-        jPanel1.setBounds(210, 10, 770, 520);
-
-        jButton1.setText("Repain");
-        jButton1.setBorder(javax.swing.BorderFactory.createMatteBorder(4, 4, 4, 4, new java.awt.Color(0, 0, 0)));
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
-            }
-        });
-        getContentPane().add(jButton1);
-        jButton1.setBounds(50, 410, 80, 50);
+        jPanel1.setBounds(160, 10, 440, 550);
 
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
         jPanel2.setLayout(null);
@@ -470,27 +456,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         jButton14.setBounds(30, 100, 60, 23);
 
         getContentPane().add(jPanel2);
-        jPanel2.setBounds(40, 40, 130, 130);
-
-        jLabel1.setFont(new java.awt.Font("AngsanaUPC", 2, 18)); // NOI18N
-        jLabel1.setText("Ingeniería del software; CECAR 2014  Sincelejo ---  Fredys Vergara C");
-        getContentPane().add(jLabel1);
-        jLabel1.setBounds(220, 530, 400, 20);
-
-        jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder("Acumulado"));
-        jPanel3.setLayout(null);
-
-        jtacumulado.setEnabled(false);
-        jtacumulado.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jtacumuladoActionPerformed(evt);
-            }
-        });
-        jPanel3.add(jtacumulado);
-        jtacumulado.setBounds(10, 20, 110, 30);
-
-        getContentPane().add(jPanel3);
-        jPanel3.setBounds(30, 470, 130, 60);
+        jPanel2.setBounds(10, 10, 130, 130);
 
         jMenu1.setText("Archivos");
         jMenu1.add(jSeparator1);
@@ -630,7 +596,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
         setJMenuBar(jMenuBar1);
 
-        setSize(new java.awt.Dimension(1012, 623));
+        setSize(new java.awt.Dimension(630, 629));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
@@ -763,10 +729,6 @@ public class VentanaPrincipal extends javax.swing.JFrame {
             R_repaint(tope, arboles);
         }
     }//GEN-LAST:event_jMenuItem2ActionPerformed
-
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        R_repaint(tope, arboles);
-    }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jPanel1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jPanel1KeyPressed
         // TODO add your handling code here:
@@ -1061,10 +1023,6 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jPanel1MouseClicked
 
-    private void jtacumuladoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtacumuladoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jtacumuladoActionPerformed
-
     private void jMenuItem6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem6ActionPerformed
         jDialog1.setVisible(true); // TODO add your handling code here:
     }//GEN-LAST:event_jMenuItem6ActionPerformed
@@ -1110,7 +1068,6 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton10;
     private javax.swing.JButton jButton11;
     private javax.swing.JButton jButton12;
@@ -1126,7 +1083,6 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private javax.swing.JButton jButton9;
     private javax.swing.JDialog jDialog1;
     private javax.swing.JFileChooser jFileChooser2;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;
@@ -1146,13 +1102,11 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem9;
     public static javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JPanel jPanel3;
     private javax.swing.JPopupMenu.Separator jSeparator1;
     private javax.swing.JPopupMenu.Separator jSeparator2;
     private javax.swing.JPopupMenu.Separator jSeparator3;
     private javax.swing.JPopupMenu.Separator jSeparator4;
     private javax.swing.JPopupMenu.Separator jSeparator5;
     private javax.swing.JLabel jmapa;
-    private javax.swing.JTextField jtacumulado;
     // End of variables declaration//GEN-END:variables
 }
