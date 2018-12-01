@@ -1,7 +1,7 @@
 
 package view;
 
-import view.VentanaArista;
+import view.Dialog_crearCamino;
 import view.VentanaPrincipal;
 
 public class MainClass_ejecutor {

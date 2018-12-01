@@ -7,7 +7,7 @@
 package Vistas;
 
 import Clases.Arboles;
-import Clases.Pintar;
+import Clases.Draw;
 import java.awt.Frame;
 import javax.swing.JOptionPane;
 
@@ -20,10 +20,10 @@ public class VentanaArista extends javax.swing.JFrame {
     /**
      * Creates new form NewJFrame
      */  
-      Pintar pintar ;
+      Draw pintar ;
       Arboles arboles ;
       Frame frame1;
-    public VentanaArista(Arboles arbole,Pintar pinta ,int I,Frame frame){
+    public VentanaArista(Arboles arbole,Draw pinta ,int I,Frame frame){
        this.pintar =pinta;
        this.arboles=arbole;
        this.i=I;
@@ -153,7 +153,7 @@ public class VentanaArista extends javax.swing.JFrame {
              n1.setText(null);
              n2.setText(null);
              tm.setText(null);
-            Pintar.pintarLinea(VentanaPrincipal.jPanel1.getGraphics(),arboles.getCordeX(x), arboles.getCordeY(x), arboles.getCordeX(y), arboles.getCordeY(y), ta);
+            Draw.pintarLinea(VentanaPrincipal.jPanel1.getGraphics(),arboles.getCordeX(x), arboles.getCordeY(x), arboles.getCordeX(y), arboles.getCordeY(y), ta);
             
          } 
          }

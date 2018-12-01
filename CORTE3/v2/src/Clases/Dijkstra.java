@@ -49,7 +49,7 @@ public class Dijkstra {
         if (permanente != nodoFin) {
             jPanel1.paint(jPanel1.getGraphics());
             R_repaint(tope, arboles);
-            Pintar.clickSobreNodo(jPanel1.getGraphics(), arboles.getCordeX(permanente), arboles.getCordeY(permanente), null, Color.GREEN); // pinta de color GREEN los nodos
+            Draw.clickSobreNodo(jPanel1.getGraphics(), arboles.getCordeX(permanente), arboles.getCordeY(permanente), null, Color.GREEN); // pinta de color GREEN los nodos
 
             nodo[permanente].setVisitado(true);
             nodo[permanente].setNombre(permanente);
@@ -89,13 +89,13 @@ public class Dijkstra {
                 JOptionPane.showMessageDialog(null, "No se Pudo LLegar Al Nodo " + nodoFin);
             }
             while (auxi.getPredecesor() != null) {
-                Pintar.pintarCamino(jPanel1.getGraphics(), arboles.getCordeX(auxi.getNombre()), arboles.getCordeY(auxi.getNombre()), arboles.getCordeX(auxi.getPredecesor().getNombre()), arboles.getCordeY(auxi.getPredecesor().getNombre()), Color.GREEN);
-                Pintar.clickSobreNodo(jPanel1.getGraphics(), arboles.getCordeX(auxi.getNombre()), arboles.getCordeY(auxi.getNombre()), null, Color.GREEN);
+                Draw.pintarCamino(jPanel1.getGraphics(), arboles.getCordeX(auxi.getNombre()), arboles.getCordeY(auxi.getNombre()), arboles.getCordeX(auxi.getPredecesor().getNombre()), arboles.getCordeY(auxi.getPredecesor().getNombre()), Color.GREEN);
+                Draw.clickSobreNodo(jPanel1.getGraphics(), arboles.getCordeX(auxi.getNombre()), arboles.getCordeY(auxi.getNombre()), null, Color.GREEN);
                 auxi = auxi.getPredecesor();
             }
-            Pintar.clickSobreNodo(jPanel1.getGraphics(), arboles.getCordeX(nodoFin), arboles.getCordeY(nodoFin), null, Color.GREEN);
+            Draw.clickSobreNodo(jPanel1.getGraphics(), arboles.getCordeX(nodoFin), arboles.getCordeY(nodoFin), null, Color.GREEN);
         } else {
-            Pintar.clickSobreNodo(jPanel1.getGraphics(), arboles.getCordeX(nodoFin), arboles.getCordeY(nodoFin), null, Color.GREEN);
+            Draw.clickSobreNodo(jPanel1.getGraphics(), arboles.getCordeX(nodoFin), arboles.getCordeY(nodoFin), null, Color.GREEN);
         }
     }
 

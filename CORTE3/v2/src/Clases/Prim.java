@@ -84,9 +84,9 @@ public class Prim {
                 }
             }//fin  for (int j = 0; j < tamano; j++)              
          if(aumentaTamano==true){
-                    Pintar.pintarCamino(jPanel1.getGraphics(),arboles.getCordeX(nodoApuntador), arboles.getCordeY(nodoApuntador),arboles.getCordeX(nodoApuntado), arboles.getCordeY(nodoApuntado),Color.red); 
-                    Pintar.clickSobreNodo(jPanel1.getGraphics(),arboles.getCordeX(nodoApuntador), arboles.getCordeY(nodoApuntador), null,Color. red);
-                    Pintar.clickSobreNodo(jPanel1.getGraphics(),arboles.getCordeX(nodoApuntado), arboles.getCordeY(nodoApuntado), null, Color.red);                                  
+                    Draw.pintarCamino(jPanel1.getGraphics(),arboles.getCordeX(nodoApuntador), arboles.getCordeY(nodoApuntador),arboles.getCordeX(nodoApuntado), arboles.getCordeY(nodoApuntado),Color.red); 
+                    Draw.clickSobreNodo(jPanel1.getGraphics(),arboles.getCordeX(nodoApuntador), arboles.getCordeY(nodoApuntador), null,Color. red);
+                    Draw.clickSobreNodo(jPanel1.getGraphics(),arboles.getCordeX(nodoApuntado), arboles.getCordeY(nodoApuntado), null, Color.red);                                  
                     arboles.setEnArbol(tamano, nodoApuntado);
                     this.tamano++;
                     this.aumentaTamano=false;

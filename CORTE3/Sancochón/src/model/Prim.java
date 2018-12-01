@@ -8,8 +8,8 @@ package model;
 
 import static view.VentanaPrincipal.R_repaint;
 import static view.VentanaPrincipal.ingresarNodoOrigen;
-import static view.VentanaPrincipal.jPanel1;
 import java.awt.Color;
+import static view.VentanaPrincipal.PanelGeneral;
 
 /**
  *
@@ -26,13 +26,13 @@ public class Prim {
    private int nodoApuntador;
    private int tamano;
    private int arsitaMayor;
-   private  Arbol arboles;
+   private  Tree arboles;
    private int tope;
    private  int  nodoOrigen;
    
    
    
-   public Prim(Arbol arbol , int top ,int aristaMayor ){
+   public Prim(Tree arbol , int top ,int aristaMayor ){
        this.cumulado = 0;
        this.aristaMenor = 0;
        this.fin = 0;
@@ -53,7 +53,7 @@ public class Prim {
    
   public void prim(){
       this.nodoOrigen= ingresarNodoOrigen("Ingrese Nodo Origen..","nodo Origen No existe",tope);
-       jPanel1.paint(jPanel1.getGraphics());
+       PanelGeneral.paint(PanelGeneral.getGraphics());
        R_repaint(tope,arboles);
        arboles.crearEnArbol(tope);
        arboles.setEnArbol(0, nodoOrigen);
@@ -84,9 +84,9 @@ public class Prim {
                 }
             }//fin  for (int j = 0; j < tamano; j++)              
          if(aumentaTamano==true){
-                    Pintar.pintarCamino(jPanel1.getGraphics(),arboles.getCordeX(nodoApuntador), arboles.getCordeY(nodoApuntador),arboles.getCordeX(nodoApuntado), arboles.getCordeY(nodoApuntado),Color.red); 
-                    Pintar.clickSobreNodo(jPanel1.getGraphics(),arboles.getCordeX(nodoApuntador), arboles.getCordeY(nodoApuntador), null,Color. red);
-                    Pintar.clickSobreNodo(jPanel1.getGraphics(),arboles.getCordeX(nodoApuntado), arboles.getCordeY(nodoApuntado), null, Color.red);                                  
+                    Draw.pintarCamino(PanelGeneral.getGraphics(),arboles.getCordeX(nodoApuntador), arboles.getCordeY(nodoApuntador),arboles.getCordeX(nodoApuntado), arboles.getCordeY(nodoApuntado),Color.red); 
+                    Draw.clickSobreNodo(PanelGeneral.getGraphics(),arboles.getCordeX(nodoApuntador), arboles.getCordeY(nodoApuntador), null,Color. red);
+                    Draw.clickSobreNodo(PanelGeneral.getGraphics(),arboles.getCordeX(nodoApuntado), arboles.getCordeY(nodoApuntado), null, Color.red);                                  
                     arboles.setEnArbol(tamano, nodoApuntado);
                     this.tamano++;
                     this.aumentaTamano=false;

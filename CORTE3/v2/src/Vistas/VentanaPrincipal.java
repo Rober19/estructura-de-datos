@@ -6,7 +6,7 @@
 package Vistas;
 
 import Clases.Arboles;
-import Clases.Pintar;
+import Clases.Draw;
 import Clases.Dijkstra;
 import Clases.Prim;
 import java.awt.Color;
@@ -27,19 +27,19 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     /**
      * Creates new form VentanaPincipal
      */
-    Pintar pintar = new Pintar();
+    Draw pintar = new Draw();
     Arboles arboles = new Arboles();
 
     public static void R_repaint(int tope, Arboles arboles) {//pinta lo q esta antes en el panel 
         for (int j = 0; j < tope; j++) {
             for (int k = 0; k < tope; k++) {
                 if (arboles.getmAdyacencia(j, k) == 1) {
-                    Pintar.pintarLinea(jPanel1.getGraphics(), arboles.getCordeX(j), arboles.getCordeY(j), arboles.getCordeX(k), arboles.getCordeY(k), arboles.getmCoeficiente(j, k));
+                    Draw.pintarLinea(jPanel1.getGraphics(), arboles.getCordeX(j), arboles.getCordeY(j), arboles.getCordeX(k), arboles.getCordeY(k), arboles.getmCoeficiente(j, k));
                 }
             }
         }
         for (int j = 0; j < tope; j++) {
-            Pintar.pintarCirculo(jPanel1.getGraphics(), arboles.getCordeX(j), arboles.getCordeY(j), String.valueOf(arboles.getNombre(j)));
+            Draw.pintarCirculo(jPanel1.getGraphics(), arboles.getCordeX(j), arboles.getCordeY(j), String.valueOf(arboles.getNombre(j)));
         }
 
     }
@@ -79,15 +79,15 @@ public class VentanaPrincipal extends javax.swing.JFrame {
                 if (n == 0) {
                     id = j;
                     R_repaint(tope, arboles);
-                    Pintar.clickSobreNodo(jPanel1.getGraphics(), arboles.getCordeX(j), arboles.getCordeY(j), null, Color.orange);
+                    Draw.clickSobreNodo(jPanel1.getGraphics(), arboles.getCordeX(j), arboles.getCordeY(j), null, Color.orange);
                     n++;
                 } else {
                     id2 = j;
                     n++;
-                    Pintar.clickSobreNodo(jPanel1.getGraphics(), arboles.getCordeX(j), arboles.getCordeY(j), null, Color.orange);
+                    Draw.clickSobreNodo(jPanel1.getGraphics(), arboles.getCordeX(j), arboles.getCordeY(j), null, Color.orange);
                     if (id == id2) {// si id == id2 por q se volvio a dar click sobre el mismos nodo, se cancela el click anterio
                         n = 0;
-                        Pintar.pintarCirculo(jPanel1.getGraphics(), arboles.getCordeX(id), arboles.getCordeY(id), String.valueOf(arboles.getNombre(id)));
+                        Draw.pintarCirculo(jPanel1.getGraphics(), arboles.getCordeX(id), arboles.getCordeY(id), String.valueOf(arboles.getNombre(id)));
                         id = -1;
                         id2 = -1;
                     }
@@ -111,7 +111,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
                 nn++;
                 n = 0;
                 id = -1;
-                Pintar.clickSobreNodo(jPanel1.getGraphics(), arboles.getCordeX(j), arboles.getCordeY(j), null, Color.GREEN);
+                Draw.clickSobreNodo(jPanel1.getGraphics(), arboles.getCordeX(j), arboles.getCordeY(j), null, Color.GREEN);
                 break;
             }
 
@@ -610,7 +610,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
                 nn = 0;
                 Dijkstra Dijkstra = new Dijkstra(arboles, tope, permanente, nodoFin);
                 Dijkstra.dijkstra();
-                jtacumulado.setText("" + Dijkstra.getAcumulado());
+                //jtacumulado.setText("" + Dijkstra.getAcumulado());
 
             }
         } else {
@@ -619,7 +619,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
                     arboles.setCordeX(tope, xxx);
                     arboles.setCordeY(tope, yyy);
                     arboles.setNombre(tope, tope);
-                    Pintar.pintarCirculo(jPanel1.getGraphics(), arboles.getCordeX(tope), arboles.getCordeY(tope), String.valueOf(arboles.getNombre(tope)));
+                    Draw.pintarCirculo(jPanel1.getGraphics(), arboles.getCordeX(tope), arboles.getCordeY(tope), String.valueOf(arboles.getNombre(tope)));
                     tope++;
                 } else {
                     JOptionPane.showMessageDialog(null, "Se ha llegado al Maximo de nodos..");
@@ -635,9 +635,9 @@ public class VentanaPrincipal extends javax.swing.JFrame {
                 arboles.setmAdyacencia(id, id2, 1);
                 arboles.setmCoeficiente(id2, id, ta);
                 arboles.setmCoeficiente(id, id2, ta);
-                Pintar.pintarLinea(jPanel1.getGraphics(), arboles.getCordeX(id), arboles.getCordeY(id), arboles.getCordeX(id2), arboles.getCordeY(id2), ta);
-                Pintar.pintarCirculo(jPanel1.getGraphics(), arboles.getCordeX(id), arboles.getCordeY(id), String.valueOf(arboles.getNombre(id)));
-                Pintar.pintarCirculo(jPanel1.getGraphics(), arboles.getCordeX(id2), arboles.getCordeY(id2), String.valueOf(arboles.getNombre(id2)));
+                Draw.pintarLinea(jPanel1.getGraphics(), arboles.getCordeX(id), arboles.getCordeY(id), arboles.getCordeX(id2), arboles.getCordeY(id2), ta);
+                Draw.pintarCirculo(jPanel1.getGraphics(), arboles.getCordeX(id), arboles.getCordeY(id), String.valueOf(arboles.getNombre(id)));
+                Draw.pintarCirculo(jPanel1.getGraphics(), arboles.getCordeX(id2), arboles.getCordeY(id2), String.valueOf(arboles.getNombre(id2)));
                 id = -1;
                 id2 = -1;
             }
@@ -697,7 +697,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         } else {
             Prim Prim = new Prim(arboles, tope, aristaMayor);
             Prim.prim();
-            jtacumulado.setText("" + Prim.getCumulado());
+          //  jtacumulado.setText("" + Prim.getCumulado());
         }
     }//GEN-LAST:event_jMenuItem3ActionPerformed
 
@@ -1013,7 +1013,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
             nodoFin = ingresarNodoOrigen("Ingrese Nodo Fin..", "nodo fin No existe", tope);
             Dijkstra Dijkstra = new Dijkstra(arboles, tope, permanente, nodoFin);
             Dijkstra.dijkstra();
-            jtacumulado.setText("" + Dijkstra.getAcumulado());
+           // jtacumulado.setText("" + Dijkstra.getAcumulado());
         } else {
             JOptionPane.showMessageDialog(null, "Se deben de crear mas nodos ... ");
         }

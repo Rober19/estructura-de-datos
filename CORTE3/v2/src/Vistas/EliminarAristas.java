@@ -7,7 +7,7 @@
 package Vistas;
 
 import Clases.Arboles;
-import Clases.Pintar;
+import Clases.Draw;
 import java.awt.Frame;
 import javax.swing.JOptionPane;
 
@@ -25,18 +25,18 @@ public void R_repaint(){
         for (int j = 0; j < i; j++) {
             for (int k = 0; k < i; k++) {
                 if(arboles.getmAdyacencia(j, k) == 1)
-                Pintar.pintarLinea(VentanaPrincipal.jPanel1.getGraphics(),arboles.getCordeX(j),arboles.getCordeY(j), arboles.getCordeX(k), arboles.getCordeY(k),arboles.getmCoeficiente(j, k));
+                Draw.pintarLinea(VentanaPrincipal.jPanel1.getGraphics(),arboles.getCordeX(j),arboles.getCordeY(j), arboles.getCordeX(k), arboles.getCordeY(k),arboles.getmCoeficiente(j, k));
             }
         }
         for (int j = 0; j < i; j++) {
-            Pintar.pintarCirculo(VentanaPrincipal.jPanel1.getGraphics(), arboles.getCordeX(j),arboles.getCordeY(j),String.valueOf(arboles.getNombre(j)));
+            Draw.pintarCirculo(VentanaPrincipal.jPanel1.getGraphics(), arboles.getCordeX(j),arboles.getCordeY(j),String.valueOf(arboles.getNombre(j)));
            
        }
    }
- Pintar pintar ;
+ Draw pintar ;
       Arboles arboles ;
       Frame frame;
-    public EliminarAristas(Pintar pinta , Arboles arbole ,int ii, Frame fram) {
+    public EliminarAristas(Draw pinta , Arboles arbole ,int ii, Frame fram) {
         initComponents();
         i=ii;
         this.pintar =pinta;
