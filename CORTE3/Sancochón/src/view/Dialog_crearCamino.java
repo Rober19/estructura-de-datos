@@ -132,16 +132,16 @@ public class Dialog_crearCamino extends javax.swing.JFrame {
         int y;
         int ta;
         if (n1.getText().length() < 1 || n2.getText().length() < 1 || tm.getText().length() < 1) {
-            JOptionPane.showMessageDialog(null, "Error.. Faltan datos : ");
+            JOptionPane.showMessageDialog(null, prop("errReqData"));
         } else {
             x = Integer.parseInt(n1.getText());
             y = Integer.parseInt(n2.getText());
             ta = Integer.parseInt(tm.getText());
 
             if (x == y) {
-                JOptionPane.showMessageDialog(null, "Error.. Debe digitar un nodo diferente a : " + y);
+                JOptionPane.showMessageDialog(null, prop("errReqDifNode") + y);
             } else if (x < 0 || x >= i || y < 0 || y >= i) {
-                JOptionPane.showMessageDialog(null, "Error.. Nodos No validos ");
+                JOptionPane.showMessageDialog(null, prop("errInvalidNode"));
             } else {
                 arboles.setmAdyacencia(x, y, 1);
                 arboles.setmAdyacencia(y, x, 1);

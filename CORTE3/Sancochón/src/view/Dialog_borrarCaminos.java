@@ -3,7 +3,7 @@ package view;
 import model.Tree;
 import model.Draw;
 import java.awt.Frame;
-import java.io.InputStream;
+import java.io.InputStream; 
 import java.util.Properties;
 import javax.swing.JOptionPane;
 
