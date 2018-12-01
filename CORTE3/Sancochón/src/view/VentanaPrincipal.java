@@ -50,7 +50,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
     }
 
-    public void adactarImagen(File file) {
+    public void adaptImage(File file) {
         try {
 
             BufferedImage read = ImageIO.read(file);
@@ -64,7 +64,8 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
     public VentanaPrincipal() {
         initComponents();       
-        jDialog1.setLocationRelativeTo(null);
+        this.setTitle("sanchocho-grupoBatty");
+        Dialog_1.setLocationRelativeTo(null);
     }
 
     Draw draw_all = new Draw();
@@ -80,7 +81,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jDialog1 = new javax.swing.JDialog();
+        Dialog_1 = new javax.swing.JDialog();
         jFileChooser2 = new javax.swing.JFileChooser();
         PanelGeneral = new javax.swing.JPanel();
         jmapa = new javax.swing.JLabel();
@@ -98,9 +99,9 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         Sep4 = new javax.swing.JPopupMenu.Separator();
         Item10 = new javax.swing.JMenuItem();
 
-        jDialog1.setMinimumSize(new java.awt.Dimension(700, 450));
-        jDialog1.setResizable(false);
-        jDialog1.getContentPane().setLayout(null);
+        Dialog_1.setMinimumSize(new java.awt.Dimension(700, 450));
+        Dialog_1.setResizable(false);
+        Dialog_1.getContentPane().setLayout(null);
 
         jFileChooser2.setMaximumSize(new java.awt.Dimension(21475, 21474));
         jFileChooser2.addActionListener(new java.awt.event.ActionListener() {
@@ -108,7 +109,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
                 jFileChooser2ActionPerformed(evt);
             }
         });
-        jDialog1.getContentPane().add(jFileChooser2);
+        Dialog_1.getContentPane().add(jFileChooser2);
         jFileChooser2.setBounds(10, 20, 670, 390);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -452,7 +453,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_PanelGeneralMouseClicked
 
     private void Item8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Item8ActionPerformed
-        jDialog1.setVisible(true); // TODO add your handling code here:
+        Dialog_1.setVisible(true); // TODO add your handling code here:
     }//GEN-LAST:event_Item8ActionPerformed
 
     private void jFileChooser2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jFileChooser2ActionPerformed
@@ -461,8 +462,8 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         String comando = evt.getActionCommand();
         if (comando.equals(JFileChooser.APPROVE_SELECTION)) {
             File archiSeleccionado = selectorArchios.getSelectedFile();
-            adactarImagen(archiSeleccionado);
-            jDialog1.setVisible(false);
+            adaptImage(archiSeleccionado);
+            Dialog_1.setVisible(false);
             //JOptionPane.showMessageDialog(null, ""+archiSeleccionado+"  nOMBRE"+archiSeleccionado.getName());
         }// TODO add your handling code here:
     }//GEN-LAST:event_jFileChooser2ActionPerformed
@@ -566,6 +567,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenuBar BarMenu;
+    private javax.swing.JDialog Dialog_1;
     private javax.swing.JMenuItem Item;
     private javax.swing.JMenuItem Item10;
     private javax.swing.JMenuItem Item2;
@@ -579,7 +581,6 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     public static javax.swing.JPanel PanelGeneral;
     private javax.swing.JPopupMenu.Separator Sep3;
     private javax.swing.JPopupMenu.Separator Sep4;
-    private javax.swing.JDialog jDialog1;
     private javax.swing.JFileChooser jFileChooser2;
     private javax.swing.JLabel jmapa;
     // End of variables declaration//GEN-END:variables
