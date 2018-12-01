@@ -171,8 +171,6 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         jMenuItem5 = new javax.swing.JMenuItem();
         jMenuItem7 = new javax.swing.JMenuItem();
         jSeparator4 = new javax.swing.JPopupMenu.Separator();
-        jMenuItem4 = new javax.swing.JMenuItem();
-        jMenuItem6 = new javax.swing.JMenuItem();
         jMenuItem1 = new javax.swing.JMenuItem();
         jSeparator5 = new javax.swing.JPopupMenu.Separator();
         jMenuItem8 = new javax.swing.JMenuItem();
@@ -202,19 +200,19 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         getContentPane().setLayout(null);
 
         jPanel1.setBackground(new java.awt.Color(141, 141, 141));
-        jPanel1.setBorder(javax.swing.BorderFactory.createMatteBorder(5, 5, 5, 5, new java.awt.Color(0, 102, 102)));
+        jPanel1.setBorder(javax.swing.BorderFactory.createMatteBorder(5, 5, 5, 5, new java.awt.Color(255, 51, 153)));
         jPanel1.setMinimumSize(new java.awt.Dimension(770, 522));
+        jPanel1.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+            public void mouseMoved(java.awt.event.MouseEvent evt) {
+                jPanel1MouseMoved(evt);
+            }
+        });
         jPanel1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jPanel1MouseClicked(evt);
             }
             public void mousePressed(java.awt.event.MouseEvent evt) {
                 jPanel1MousePressed(evt);
-            }
-        });
-        jPanel1.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
-            public void mouseMoved(java.awt.event.MouseEvent evt) {
-                jPanel1MouseMoved(evt);
             }
         });
         jPanel1.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -461,7 +459,6 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         jMenu1.setText("Archivos");
         jMenu1.add(jSeparator1);
 
-        jMenuItem13.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_C, java.awt.event.InputEvent.CTRL_MASK));
         jMenuItem13.setText("Camino Más Corto");
         jMenuItem13.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -470,7 +467,6 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         });
         jMenu1.add(jMenuItem13);
 
-        jMenuItem3.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_R, java.awt.event.InputEvent.CTRL_MASK));
         jMenuItem3.setText("Recubrir");
         jMenuItem3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -480,7 +476,6 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         jMenu1.add(jMenuItem3);
         jMenu1.add(jSeparator3);
 
-        jMenuItem2.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_N, java.awt.event.InputEvent.CTRL_MASK));
         jMenuItem2.setText("Nueva Arista");
         jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -507,30 +502,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         jMenu1.add(jMenuItem7);
         jMenu1.add(jSeparator4);
 
-        jMenuItem4.setText("Muestra ");
-        jMenuItem4.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                jMenuItem4MousePressed(evt);
-            }
-        });
-        jMenuItem4.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem4ActionPerformed(evt);
-            }
-        });
-        jMenu1.add(jMenuItem4);
-
-        jMenuItem6.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_L, java.awt.event.InputEvent.CTRL_MASK));
-        jMenuItem6.setText("Cargar Mapa");
-        jMenuItem6.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem6ActionPerformed(evt);
-            }
-        });
-        jMenu1.add(jMenuItem6);
-
-        jMenuItem1.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_N, java.awt.event.InputEvent.ALT_MASK));
-        jMenuItem1.setText("Nuevo Proyecto");
+        jMenuItem1.setText("Reiniciar Todo");
         jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItem1ActionPerformed(evt);
@@ -539,7 +511,6 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         jMenu1.add(jMenuItem1);
         jMenu1.add(jSeparator5);
 
-        jMenuItem8.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_S, java.awt.event.InputEvent.CTRL_MASK));
         jMenuItem8.setText("Salir");
         jMenuItem8.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -552,7 +523,6 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
         jMenu2.setText("Eliminar");
 
-        jMenuItem10.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_E, java.awt.event.InputEvent.ALT_MASK));
         jMenuItem10.setText("Eliminar Nodo");
         jMenuItem10.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -561,7 +531,6 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         });
         jMenu2.add(jMenuItem10);
 
-        jMenuItem9.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_E, java.awt.event.InputEvent.CTRL_MASK));
         jMenuItem9.setText("Eliminar Arista");
         jMenuItem9.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -570,7 +539,6 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         });
         jMenu2.add(jMenuItem9);
 
-        jMenuItem11.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_E, java.awt.event.InputEvent.ALT_MASK | java.awt.event.InputEvent.CTRL_MASK));
         jMenuItem11.setText("Eliminar Todas Las Arsitas ");
         jMenuItem11.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -583,7 +551,6 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
         jMenu3.setText("Opciones ");
 
-        jMenuItem12.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F1, 0));
         jMenuItem12.setText("Color");
         jMenuItem12.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -643,63 +610,6 @@ public class VentanaPrincipal extends javax.swing.JFrame {
             }
         }
     }//GEN-LAST:event_jPanel1MousePressed
-
-    private void jMenuItem4MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenuItem4MousePressed
-
-    }//GEN-LAST:event_jMenuItem4MousePressed
-
-    private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
-        //jMenuItem2.setEnabled(false);
-        jPanel1.paint(jPanel1.getGraphics());
-        n = 0;
-        id = -1;
-        id2 = -1;
-        int Matriz[][] = {{0, 1, 0, 1, 1, 0, 0, 1},
-        {1, 0, 1, 0, 0, 0, 0, 0},
-        {0, 1, 0, 1, 1, 0, 0, 0},
-        {1, 0, 1, 0, 0, 0, 0, 0},
-        {1, 0, 1, 0, 0, 1, 0, 0},
-        {0, 0, 0, 0, 1, 0, 1, 1},
-        {0, 0, 0, 0, 0, 1, 0, 0},
-        {1, 0, 0, 0, 0, 1, 0, 0}
-        };
-        int coe[][] = {{0, 50, 0, 46, 216, 0, 0, 578},
-        {50, 0, 59, 0, 0, 0, 0, 0},
-        {0, 59, 0, 89, 174, 0, 0, 0},
-        {46, 0, 89, 0, 0, 0, 0, 0},
-        {216, 0, 174, 0, 0, 471, 0, 0},
-        {0, 0, 0, 0, 471, 0, 194, 398},
-        {0, 0, 0, 0, 0, 194, 0, 0},
-        {578, 0, 0, 0, 0, 398, 0, 0},};
-        int xx1[] = {202, 102, 8, 198, 248, 352, 481, 416};
-        int yy1[] = {12, 74, 165, 113, 233, 300, 368, 177};
-        int nom[] = {0, 1, 2, 3, 4, 5, 6, 7};
-        aristaMayor = 600;
-        for (int j = 0; j < 8; j++) {
-            arboles.setCordeX(j, xx1[j]);
-            arboles.setCordeY(j, yy1[j]);
-            arboles.setNombre(j, nom[j]);
-
-        }
-        for (int j = 0; j < 8; j++) {
-            for (int k = 0; k < 8; k++) {
-                arboles.setmAdyacencia(j, k, Matriz[j][k]);
-                arboles.setmCoeficiente(j, k, coe[j][k]);
-            }
-        }
-        tope = 8;
-        R_repaint(tope, arboles);
-    }//GEN-LAST:event_jMenuItem4ActionPerformed
-
-    private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
-        if (tope < 1) {
-            JOptionPane.showMessageDialog(null, "Aun no se ha creado Un nodo");
-        } else {
-            Prim Prim = new Prim(arboles, tope, aristaMayor);
-            Prim.prim();
-          //  jtacumulado.setText("" + Prim.getCumulado());
-        }
-    }//GEN-LAST:event_jMenuItem3ActionPerformed
 
     private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem5ActionPerformed
         if (tope == 0) {
@@ -1023,10 +933,6 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jPanel1MouseClicked
 
-    private void jMenuItem6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem6ActionPerformed
-        jDialog1.setVisible(true); // TODO add your handling code here:
-    }//GEN-LAST:event_jMenuItem6ActionPerformed
-
     private void jFileChooser2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jFileChooser2ActionPerformed
 
         JFileChooser selectorArchios = (JFileChooser) evt.getSource();
@@ -1038,6 +944,16 @@ public class VentanaPrincipal extends javax.swing.JFrame {
             //JOptionPane.showMessageDialog(null, ""+archiSeleccionado+"  nOMBRE"+archiSeleccionado.getName());
         }// TODO add your handling code here:
     }//GEN-LAST:event_jFileChooser2ActionPerformed
+
+    private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
+        if (tope < 1) {
+            JOptionPane.showMessageDialog(null, "Aun no se ha creado Un nodo");
+        } else {
+            Prim Prim = new Prim(arboles, tope, aristaMayor);
+            Prim.prim();
+            //  jtacumulado.setText("" + Prim.getCumulado());
+        }
+    }//GEN-LAST:event_jMenuItem3ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -1094,9 +1010,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem13;
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem3;
-    private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JMenuItem jMenuItem5;
-    private javax.swing.JMenuItem jMenuItem6;
     private javax.swing.JMenuItem jMenuItem7;
     private javax.swing.JMenuItem jMenuItem8;
     private javax.swing.JMenuItem jMenuItem9;

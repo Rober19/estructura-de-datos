@@ -9,11 +9,7 @@ import javax.swing.JOptionPane;
 
 public class Dialog_crearCamino extends javax.swing.JFrame {
 
-    Draw pintar;
-    Tree arboles;
-    Frame frame1;
-    
-      public String prop(String prop1) {
+    public String prop(String prop1) {
         Properties propt = new Properties();
         InputStream fs;
         try {
@@ -25,9 +21,13 @@ public class Dialog_crearCamino extends javax.swing.JFrame {
 
     }
 
+    Draw draw_all;
+    Tree tree_1;
+    Frame frame1;
+
     public Dialog_crearCamino(Tree arbole, Draw pinta, int I, Frame frame) {
-        this.pintar = pinta;
-        this.arboles = arbole;
+        this.draw_all = pinta;
+        this.tree_1 = arbole;
         this.i = I;
         frame1 = frame;
 
@@ -143,14 +143,14 @@ public class Dialog_crearCamino extends javax.swing.JFrame {
             } else if (x < 0 || x >= i || y < 0 || y >= i) {
                 JOptionPane.showMessageDialog(null, prop("errInvalidNode"));
             } else {
-                arboles.setmAdyacencia(x, y, 1);
-                arboles.setmAdyacencia(y, x, 1);
-                arboles.setmCoeficiente(x, y, ta);
-                arboles.setmCoeficiente(y, x, ta);
+                tree_1.setmAdyacencia(x, y, 1);
+                tree_1.setmAdyacencia(y, x, 1);
+                tree_1.setmCoeficiente(x, y, ta);
+                tree_1.setmCoeficiente(y, x, ta);
                 n1.setText(null);
                 n2.setText(null);
                 tm.setText(null);
-                Draw.pintarLinea(VentanaPrincipal.PanelGeneral.getGraphics(), arboles.getCordeX(x), arboles.getCordeY(x), arboles.getCordeX(y), arboles.getCordeY(y), ta);
+                Draw.pintarLinea(VentanaPrincipal.PanelGeneral.getGraphics(), tree_1.getCordeX(x), tree_1.getCordeY(x), tree_1.getCordeX(y), tree_1.getCordeY(y), ta);
 
             }
         }

@@ -9,8 +9,6 @@ import javax.swing.JOptionPane;
 
 public class Dialog_borrarCaminos extends javax.swing.JFrame {
 
-    int i;
-
     public String prop(String prop1) {
         Properties propt = new Properties();
         InputStream fs;
@@ -26,25 +24,26 @@ public class Dialog_borrarCaminos extends javax.swing.JFrame {
     public void R_repaint() {
         for (int j = 0; j < i; j++) {
             for (int k = 0; k < i; k++) {
-                if (arboles.getmAdyacencia(j, k) == 1) {
-                    Draw.pintarLinea(VentanaPrincipal.PanelGeneral.getGraphics(), arboles.getCordeX(j), arboles.getCordeY(j), arboles.getCordeX(k), arboles.getCordeY(k), arboles.getmCoeficiente(j, k));
+                if (tree_1.getmAdyacencia(j, k) == 1) {
+                    Draw.pintarLinea(VentanaPrincipal.PanelGeneral.getGraphics(), tree_1.getCordeX(j), tree_1.getCordeY(j), tree_1.getCordeX(k), tree_1.getCordeY(k), tree_1.getmCoeficiente(j, k));
                 }
             }
         }
         for (int j = 0; j < i; j++) {
-            Draw.pintarCirculo(VentanaPrincipal.PanelGeneral.getGraphics(), arboles.getCordeX(j), arboles.getCordeY(j), String.valueOf(arboles.getNombre(j)));
+            Draw.pintarCirculo(VentanaPrincipal.PanelGeneral.getGraphics(), tree_1.getCordeX(j), tree_1.getCordeY(j), String.valueOf(tree_1.getNombre(j)));
 
         }
     }
-    Draw pintar;
-    Tree arboles;
+    Draw draw_all;
+    Tree tree_1;
     Frame frame;
+    int i;
 
     public Dialog_borrarCaminos(Draw pinta, Tree arbole, int ii, Frame fram) {
         initComponents();
         i = ii;
-        this.pintar = pinta;
-        this.arboles = arbole;
+        this.draw_all = pinta;
+        this.tree_1 = arbole;
         frame = fram;
     }
 
@@ -168,10 +167,10 @@ public class Dialog_borrarCaminos extends javax.swing.JFrame {
             } else if (x < 0 || x >= i || y < 0 || y >= i) {
                 JOptionPane.showMessageDialog(null, prop("errInvalidNode"));
             } else {
-                arboles.setmAdyacencia(x, y, 0);
-                arboles.setmAdyacencia(y, x, 0);
-                arboles.setmCoeficiente(x, y, 0);
-                arboles.setmCoeficiente(y, x, 0);
+                tree_1.setmAdyacencia(x, y, 0);
+                tree_1.setmAdyacencia(y, x, 0);
+                tree_1.setmCoeficiente(x, y, 0);
+                tree_1.setmCoeficiente(y, x, 0);
                 n1.setText(null);
                 n2.setText(null);
                 VentanaPrincipal.PanelGeneral.paint(VentanaPrincipal.PanelGeneral.getGraphics());
