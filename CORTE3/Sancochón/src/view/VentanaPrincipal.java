@@ -214,7 +214,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         MenuGeneral.add(Item8);
 
         Item9.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_N, java.awt.event.InputEvent.ALT_MASK));
-        Item9.setText("Nuevo Proyecto");
+        Item9.setText("Nuevo mapa");
         Item9.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 Item9ActionPerformed(evt);
